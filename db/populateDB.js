@@ -32,3 +32,17 @@ const sqlTables = `
         doc_signed BOOL NOT NULL
     )
 `;
+
+async function main() {
+    console.log("Creating...");
+
+    const client = new Client({
+        connectionString: "postgresql://jan:jan@localhost:5432/school_inventory"
+    });
+
+    await client.connect();
+    await client.query(sqlTables);
+    await client.end();
+
+    console.log("Finished.");
+}
