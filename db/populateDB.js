@@ -46,3 +46,5 @@ async function main() {
 
     console.log("Finished.");
 }
+
+main();
