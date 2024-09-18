@@ -1,9 +1,12 @@
 #! /usr/bin/env node
 import pkg from "pg";
+import dotenv from "dotenv";
+
 const {Client} = pkg;
+dotenv.config();
 
 const sqlValues = `
-    INSERT INTO users VALUES 
+    INSERT INTO users (first_name, last_name, email) VALUES 
         ('John', 'Doe', 'johndoe@test.com'),
         ('Jane', 'Doe', 'janedoe@test.com');
 
@@ -28,7 +31,7 @@ async function main() {
     
         console.log("Data inserted successfully.");
     } catch (error) {
-        console.log(`Error inserting data: ${error}`);
+        console.log(error);
     }
     
 }
