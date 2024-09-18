@@ -1,7 +1,10 @@
 #! /usr/bin/env node
 
 import pkg from "pg";
+import dotenv from "dotenv";
+
 const {Client} = pkg;
+dotenv.config();
 
 const sqlTables = `
     CREATE TABLE IF NOT EXISTS users (
@@ -37,7 +40,7 @@ async function main() {
     console.log("Creating...");
 
     const client = new Client({
-        connectionString: "postgresql://jan:jan@localhost:5432/school_inventory"
+        connectionString: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@localhost:${process.env.DB_PORT}/${process.env.DB_NAME}`
     });
 
     await client.connect();
