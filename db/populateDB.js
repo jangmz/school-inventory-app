@@ -9,28 +9,28 @@ const sqlTables = `
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL
-    )
+    );
 
     CREATE TABLE IF NOT EXISTS laptops (
         id INTEGER PRIMARY KEY NOT NULL,
         model VARCHAR(255),
         status VARCHAR(255) NOT NULL,
-        user_id INTEGER REFERENCES users(id) ON DELETE cascade 
-        doc_signed BOOL NOT NULL,
+        user_id INTEGER REFERENCES users(id) ON DELETE cascade,
+        doc_signed BOOLEAN NOT NULL,
         cpu VARCHAR(255),
         ram INTEGER,
         storage INTEGER,
         notes VARCHAR(255)
-    )
+    );
 
     CREATE TABLE IF NOT EXISTS tablets (
         id INTEGER PRIMARY KEY NOT NULL,
         model VARCHAR(255),
         status VARCHAR(255) NOT NULL,
-        user_id INTEGER REFERENCES users(id) ON DELETE cascade
+        user_id INTEGER REFERENCES users(id) ON DELETE cascade,
         notes VARCHAR(255),
-        doc_signed BOOL NOT NULL
-    )
+        doc_signed BOOLEAN NOT NULL
+    );
 `;
 
 async function main() {
