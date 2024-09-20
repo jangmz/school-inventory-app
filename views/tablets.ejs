@@ -6,8 +6,31 @@
     <title>Tablets Inventory</title>
 </head>
 <body>
+    <a href="/">Home</a><br>
     <h1>Tablets</h1>
-    <p>Tablets inventory will be shown here.</p><br><br>
-    <a href="/">Home</a>
+    <% if (locals.tabletsList) { %>
+        <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Model</td>
+                    <td>Status</td>
+                    <td>User(ID)</td>
+                    <td>Notes</td>
+                    <td>Document</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% tabletsList.map(tablet => { %>
+                    <td><%= tablet.id %></td>
+                    <td><%= tablet.model %></td>
+                    <td><%= tablet.status %></td>
+                    <td><%= tablet.user_id %></td>
+                    <td><%= tablet.notes %></td>
+                    <td><%= tablet.doc_signed %></td>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
 </body>
 </html>
