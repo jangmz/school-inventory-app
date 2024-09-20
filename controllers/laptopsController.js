@@ -10,6 +10,12 @@ async function laptopsGet(req, res) {
     });
 }
 
+// GET /laptops/new -> displays form for inserting a new laptop into DB
+function laptopsNewGet(req, res) {
+    res.render("newLaptopForm");
+}
+
 export default laptopsController = {
     laptopsGet,
+    laptopsNewGet,
 }

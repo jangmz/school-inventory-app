@@ -10,6 +10,12 @@ let tabletsController = {};
     });
 }
 
+// GET /tablets/new -> displays form for inserting a new tablet into DB
+function tabletsNewGet(req, res) {
+    res.render("newTabletForm");
+}
+
 export default tabletsController = {
     tabletsGet,
+    tabletsNewGet,
 }

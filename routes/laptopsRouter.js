@@ -4,5 +4,6 @@ import laptopsController from "../controllers/laptopsController.js";
 const laptopsRouter = Router();
 
 laptopsRouter.get("/", laptopsController.laptopsGet);
+laptopsRouter.get("/new", laptopsController.laptopsNewGet);
 
 export default laptopsRouter;
