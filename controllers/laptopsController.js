@@ -22,9 +22,8 @@ async function laptopsNewPost(req, res) {
 
         const newLaptop = req.body;
 
-        // handle correct data from checkbox
+        // TODO: transfer checking of input data from "queries.js" in to here, send sanitized data
         newLaptop.doc_signed === "on" ? newLaptop.doc_signed = true : newLaptop.doc_signed = false;
-        //console.log(newLaptop);
 
         // input data to DB
         await db.insertLaptop(newLaptop);
