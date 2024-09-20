@@ -9,9 +9,11 @@
     <%- include("partials/navigationMenu.ejs") %>
     <form action="/laptops/new" method="post">
         <label for="id">Inventory number:</label>
-        <input type="number" name="id" id="id">
+        <input type="number" name="id" id="id" required>
+
         <label for="model">Model:</label>
-        <input type="text" name="model" id="model">
+        <input type="text" name="model" id="model" required>
+
         <label for="status">Status</label>
         <select name="status" id="status">
             <option value="Available">Available</option>
@@ -22,18 +24,25 @@
             <option value="Damaged">Damaged</option>
             <option value="Not in use">Not in use</option>
         </select>
+        
         <label for="user">User:</label>
-        <input type="text" name="user" id="user">
+        <input type="number" name="user_id" id="user_id" min="1">
+        
         <label for="doc_signed">Document:</label>
         <input type="checkbox" name="doc_signed" id="doc_signed">
+        
         <label for="cpu">CPU:</label>
         <input type="text" name="cpu" id="cpu">
+        
         <label for="ram">RAM:</label>
-        <input type="number" name="ram" id="ram">
+        <input type="number" name="ram" id="ram" min="0">
+        
         <label for="storage">Storage:</label>
-        <input type="number" name="storage" id="storage">
+        <input type="number" name="storage" id="storage" min="0">
+        
         <label for="notes">Notes:</label>
         <textarea name="notes" id="notes"></textarea>
+        
         <button type="submit">Submit</button>
     </form>
 </body>

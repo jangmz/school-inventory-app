@@ -15,7 +15,30 @@ function laptopsNewGet(req, res) {
     res.render("newLaptopForm");
 }
 
+// POST /laptops/new -> inserts new laptop into DB
+async function laptopsNewPost(req, res) {
+    try {
+        console.log("Adding new laptop...");
+
+        const newLaptop = req.body;
+
+        // handle correct data from checkbox
+        newLaptop.doc_signed === "on" ? newLaptop.doc_signed = true : newLaptop.doc_signed = false;
+        //console.log(newLaptop);
+
+        // input data to DB
+        await db.insertLaptop(newLaptop);
+
+        console.log("Successfully added.");
+    } catch (error) {
+        console.log(error);
+    }
+
+    res.redirect("../laptops");
+}
+
 export default laptopsController = {
     laptopsGet,
     laptopsNewGet,
+    laptopsNewPost,
 }

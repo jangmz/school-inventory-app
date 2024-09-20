@@ -5,5 +5,6 @@ const laptopsRouter = Router();
 
 laptopsRouter.get("/", laptopsController.laptopsGet);
 laptopsRouter.get("/new", laptopsController.laptopsNewGet);
+laptopsRouter.post("/new", laptopsController.laptopsNewPost);
 
 export default laptopsRouter;
