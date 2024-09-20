@@ -20,7 +20,16 @@ async function insertLaptop(laptop) {
     `, [laptop.id, laptop.model, laptop.status, laptop.user_id, laptop.doc_signed, laptop.cpu, laptop.ram, laptop.storage, laptop.notes]);
 }
 
+// insert new tablet in to DB
+async function insertTablet(tablet) {
+    await pool.query(`
+        INSERT INTO tablets(id, model, status, user_id, notes, doc_signed)
+        VALUES($1, $2, $3, $4, $5, $6);
+    `, [tablet.id, tablet.model, tablet.status, tablet.user_id, tablet.notes, tablet.doc_signed]);
+}
+
 export default {
     getAllLaptops,
     getAllTablets,
+    insertLaptop
 }
