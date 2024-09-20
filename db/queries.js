@@ -14,4 +14,5 @@ async function getAllTablets() {
 
 export default {
     getAllLaptops,
+    getAllTablets,
 }
