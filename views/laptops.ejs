@@ -6,7 +6,7 @@
     <title>Laptops Inventory</title>
 </head>
 <body>
-    <a href="/">Home</a><br>
+    <%- include("partials/navigationMenu.ejs") %>
     <h1>Laptops</h1>
     <% if (locals.laptopsList) { %>
         <table>
