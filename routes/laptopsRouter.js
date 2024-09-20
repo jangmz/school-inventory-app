@@ -1,10 +1,8 @@
 import { Router } from "express";
-// import laptopsController from "../controllers/laptopsController.js"
+import laptopsController from "../controllers/laptopsController";
 
 const laptopsRouter = Router();
 
-laptopsRouter.get("/", (req, res) => {
-    res.render("laptops");
-});
+laptopsRouter.get("/", laptopsController.laptopsGet);
 
 export default laptopsRouter;

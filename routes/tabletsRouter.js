@@ -1,9 +1,8 @@
 import { Router } from "express";
+import tabletsController from "../controllers/tabletsController";
 
 const tabletsRouter = Router();
 
-tabletsRouter.get("/", (req, res) => {
-    res.render("tablets");
-});
+tabletsRouter.get("/", tabletsController.tabletsGet);
 
 export default tabletsRouter;
