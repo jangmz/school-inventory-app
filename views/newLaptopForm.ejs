@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Laptop Entry</title>
+</head>
+<body>
+    <%- include("partials/navigationMenu.ejs") %>
+    <form action="/laptops/new" method="post">
+        <label for="id">Inventory number:</label>
+        <input type="number" name="id" id="id">
+        <label for="model">Model:</label>
+        <input type="text" name="model" id="model">
+        <label for="status">Status</label>
+        <select name="status" id="status">
+            <option value="Available">Available</option>
+            <option value="Not available">Not available</option>
+            <option value="Unknown location">Unknown Location</option>
+            <option value="Temporary unavailable">Temporary unavailable</option>
+            <option value="Reserved">Reserved</option>
+            <option value="Damaged">Damaged</option>
+            <option value="Not in use">Not in use</option>
+        </select>
+        <label for="user">User:</label>
+        <input type="text" name="user" id="user">
+        <label for="doc_signed">Document:</label>
+        <input type="checkbox" name="doc_signed" id="doc_signed">
+        <label for="cpu">CPU:</label>
+        <input type="text" name="cpu" id="cpu">
+        <label for="ram">RAM:</label>
+        <input type="number" name="ram" id="ram">
+        <label for="storage">Storage:</label>
+        <input type="number" name="storage" id="storage">
+        <label for="notes">Notes:</label>
+        <textarea name="notes" id="notes"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
