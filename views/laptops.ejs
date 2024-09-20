@@ -6,8 +6,39 @@
     <title>Laptops Inventory</title>
 </head>
 <body>
+    <a href="/">Home</a><br>
     <h1>Laptops</h1>
-    <p>Laptops inventory will be shown here.</p><br><br>
-    <a href="/">Home</a>
+    <% if (locals.laptopsList) { %>
+        <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Model</td>
+                    <td>Status</td>
+                    <td>User (ID)</td>
+                    <td>Document</td>
+                    <td>CPU</td>
+                    <td>RAM</td>
+                    <td>Storage</td>
+                    <td>Notes</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% laptopsList.map(laptop => { %>
+                    <tr>
+                        <td><%= laptop.id %></td>
+                        <td><%= laptop.model %></td>
+                        <td><%= laptop.status %></td>
+                        <td><%= laptop.user_id %></td>
+                        <td><%= laptop.doc_signed %></td>
+                        <td><%= laptop.cpu %></td>
+                        <td><%= laptop.ram %></td>
+                        <td><%= laptop.storage %></td>
+                        <td><%= laptop.notes %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
 </body>
 </html>
