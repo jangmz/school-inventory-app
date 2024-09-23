@@ -36,8 +36,24 @@ async function laptopsNewPost(req, res) {
     res.redirect("../laptops");
 }
 
+// GET /laptops/:laptopId/update -> dispays a form for updating data of a laptop
+async function laptopsUpdateGet(req, res) {
+    const laptopIdToUpdate = parseInt(req.params.laptopId);
+    const allLaptops = await db.getAllLaptops();
+    const updateLaptop = allLaptops.find(laptop => laptop.id === laptopIdToUpdate);
+
+    if (!updateLaptop) {
+        return res.status(404).json({msg: `Laptop with ID: ${laptopIdToUpdate} was not found!`});
+    }
+    
+    res.render("updateLaptopForm", {laptopData: updateLaptop});
+}
+
+// POST /laptops/update -> updates the data to the DB and redirects to /laptops
+
 export default laptopsController = {
     laptopsGet,
     laptopsNewGet,
     laptopsNewPost,
+    laptopsUpdateGet,
 }
