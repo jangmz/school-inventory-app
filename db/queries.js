@@ -40,7 +40,22 @@ async function insertTablet(tablet) {
 
 // update laptop data
 async function updateLaptop(laptop) {
-
+    await pool.query(
+        `UPDATE laptops
+        SET model=$1, status=$2, user_id=$3, doc_signed=$4, cpu=$5, ram=$6, storage=$7, notes=$8
+        WHERE id=$9;`,
+        [
+            laptop.model, 
+            laptop.status, 
+            laptop.user_id, 
+            laptop.doc_signed, 
+            laptop.cpu, 
+            laptop.ram, 
+            laptop.storage, 
+            laptop.notes, 
+            laptop.id
+        ]
+    );
 }
 
 export default {
