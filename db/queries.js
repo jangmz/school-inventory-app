@@ -38,8 +38,15 @@ async function insertTablet(tablet) {
     `, [tablet.id, tablet.model, tablet.status, tablet.user_id, tablet.notes, tablet.doc_signed]);
 }
 
+// update laptop data
+async function updateLaptop(laptop) {
+
+}
+
 export default {
     getAllLaptops,
     getAllTablets,
-    insertLaptop
+    insertLaptop,
+    insertTablet,
+    updateLaptop,
 }

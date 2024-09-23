@@ -15,6 +15,11 @@ function tabletsNewGet(req, res) {
     res.render("newTabletForm");
 }
 
+// POST /tablets/new -> inserts a new tablet into DB
+async function tabletsNewPost(req, res) {
+    // TODO
+}
+
 export default tabletsController = {
     tabletsGet,
     tabletsNewGet,
