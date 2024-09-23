@@ -2,13 +2,13 @@ import pool from "./pool.js";
 
 // get all laptops from DB
 async function getAllLaptops() {
-    const { rows } = await pool.query("SELECT * FROM laptops;");
+    const { rows } = await pool.query("SELECT * FROM laptops ORDER BY id;");
     return rows;
 }
 
 // get all tablets from DB
 async function getAllTablets() {
-    const {rows} = await pool.query("SELECT * FROM tablets;");
+    const {rows} = await pool.query("SELECT * FROM tablets ORDER BY id;");
     return rows;
 }
 
