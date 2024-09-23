@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update form</title>
+</head>
+<body>
+    <h1>Update data</h1>
+    <form action="" method="post">
+        <label for="model">Model:</label>
+        <input type="text" name="model" id="model" value=<%= laptopData.model %>>
+
+        <label for="status">Status:</label>
+        <select name="status" id="status">
+            <option value="Available" <%= laptopData.status === "Available" ? "selected" : "" %>>Available</option>
+            <option value="Not available" <%= laptopData.status === "Not available" ? "selected" : "" %>>Not available</option>
+            <option value="Unknown location" <%= laptopData.status === "Unknown location" ? "selected" : "" %>>Unknown Location</option>
+            <option value="Temporary unavailable" <%= laptopData.status === "Temporary unavailable" ? "selected" : "" %>>Temporary unavailable</option>
+            <option value="Reserved" <%= laptopData.status === "Reserved" ? "selected" : "" %>>Reserved</option>
+            <option value="Damaged" <%= laptopData.status === "Damaged" ? "selected" : "" %>>Damaged</option>
+            <option value="Not in use" <%= laptopData.status === "Not in use" ? "selected" : "" %>>Not in use</option>
+        </select>
+
+        <label for="user_id">User ID:</label>
+        <input type="number" name="user_id" id="user_id" value="<%= laptopData.user_id %>">
+
+        <label for="doc_signed">Document signed:</label>
+        <input type="checkbox" name="doc_signed" id="doc_signed" value="<%= laptopData.doc_signed %>">
+
+        <label for="cpu">CPU:</label>
+        <input type="text" name="cpu" id="cpu" value="<%= laptopData.cpu %>">
+
+        <label for="ram">RAM: [GB]</label>
+        <input type="number" name="ram" id="ram" value="<%= laptopData.ram %>">
+
+        <label for="storage">Storage: [GB]</label>
+        <input type="number" name="storage" id="storage" value="<%= laptopData.storage %>">
+
+        <label for="notes">Notes:</label>
+        <textarea name="notes" id="notes"><%= laptopData.notes %></textarea>
+    </form>
+</body>
+</html>
