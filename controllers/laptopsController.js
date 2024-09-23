@@ -36,7 +36,7 @@ async function laptopsNewPost(req, res) {
     res.redirect("../laptops");
 }
 
-// GET /laptops/:laptopId/update -> dispays a form for updating data of a laptop
+// GET /laptops/update/:laptopId -> dispays a form for updating data of a laptop
 async function laptopsUpdateGet(req, res) {
     const laptopIdToUpdate = parseInt(req.params.laptopId);
     const allLaptops = await db.getAllLaptops();
@@ -49,7 +49,7 @@ async function laptopsUpdateGet(req, res) {
     res.render("updateLaptopForm", {laptopData: updateLaptop});
 }
 
-// POST /laptops/update -> updates the data to the DB and redirects to /laptops
+// POST /laptops/update/:laptopId -> updates the data to the DB and redirects to /laptops
 
 export default laptopsController = {
     laptopsGet,
