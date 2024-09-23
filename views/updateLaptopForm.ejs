@@ -27,7 +27,7 @@
         <input type="number" name="user_id" id="user_id" value="<%= laptopData.user_id %>">
 
         <label for="doc_signed">Document signed:</label>
-        <input type="checkbox" name="doc_signed" id="doc_signed" value="<%= laptopData.doc_signed %>">
+        <input type="checkbox" name="doc_signed" id="doc_signed" <%= laptopData.doc_signed === true ? "checked" : "" %> >
 
         <label for="cpu">CPU:</label>
         <input type="text" name="cpu" id="cpu" value="<%= laptopData.cpu %>">
