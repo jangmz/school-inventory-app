@@ -6,6 +6,7 @@
     <title>Update form</title>
 </head>
 <body>
+    <%- include("partials/navigationMenu.ejs") %>
     <h1>Update data</h1>
     <form action="/laptops/update/<%= laptopData.id %>" method="post">
         <label for="model">Model:</label>
