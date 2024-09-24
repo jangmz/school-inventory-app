@@ -10,8 +10,10 @@
     <form action="/tablets/new" method="post">
         <label for="id">Inventory number:</label>
         <input type="number" name="id" id="id">
+
         <label for="model">Model:</label>
         <input type="text" name="model" id="model">
+
         <label for="status">Status</label>
         <select name="status" id="status">
             <option value="Available">Available</option>
@@ -22,12 +24,16 @@
             <option value="Damaged">Damaged</option>
             <option value="Not in use">Not in use</option>
         </select>
-        <label for="user">User:</label>
-        <input type="text" name="user" id="user">
+        
+        <label for="user_id">User:</label>
+        <input type="text" name="user_id" id="user_id">
+        
         <label for="notes">Notes:</label>
         <textarea name="notes" id="notes"></textarea>
+        
         <label for="doc_signed">Document:</label>
         <input type="checkbox" name="doc_signed" id="doc_signed">
+        
         <button type="submit">Submit</button>
     </form>
 </body>

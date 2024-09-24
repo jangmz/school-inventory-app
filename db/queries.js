@@ -32,10 +32,25 @@ async function insertLaptop(laptop) {
 
 // insert new tablet in to DB
 async function insertTablet(tablet) {
-    await pool.query(`
-        INSERT INTO tablets(id, model, status, user_id, notes, doc_signed)
-        VALUES($1, $2, $3, $4, $5, $6);
-    `, [tablet.id, tablet.model, tablet.status, tablet.user_id, tablet.notes, tablet.doc_signed]);
+    console.log("Writting tablet to DB...");
+
+    try {
+        await pool.query(`
+            INSERT INTO tablets(id, model, status, user_id, notes, doc_signed)
+            VALUES($1, $2, $3, $4, $5, $6);
+        `, [
+            tablet.id, 
+            tablet.model, 
+            tablet.status, 
+            tablet.user_id, 
+            tablet.notes, 
+            tablet.doc_signed
+        ]);
+    } catch (error) {
+        console.log(error);
+    }
+    
+    console.log("Tablet data written.");
 }
 
 // update laptop data

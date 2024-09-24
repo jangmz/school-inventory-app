@@ -23,12 +23,14 @@
             </thead>
             <tbody>
                 <% tabletsList.map(tablet => { %>
-                    <td><%= tablet.id %></td>
-                    <td><%= tablet.model %></td>
-                    <td><%= tablet.status %></td>
-                    <td><%= tablet.user_id %></td>
-                    <td><%= tablet.notes %></td>
-                    <td><%= tablet.doc_signed %></td>
+                    <tr>
+                        <td><%= tablet.id %></td>
+                        <td><%= tablet.model %></td>
+                        <td><%= tablet.status %></td>
+                        <td><%= tablet.user_id %></td>
+                        <td><%= tablet.notes %></td>
+                        <td><%= tablet.doc_signed %></td>
+                    </tr>
                 <% }) %>
             </tbody>
         </table>
