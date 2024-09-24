@@ -18,14 +18,14 @@ async function insertLaptop(laptop) {
         INSERT INTO laptops(id, model, status, user_id, doc_signed, cpu, ram, storage, notes)
         VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);   
     `, [
-        parseInt(laptop.id),
+        laptop.id,
         laptop.model,
         laptop.status,
-        laptop.user_id ? parseInt(laptop.user_id) : null,
+        laptop.user_id,
         laptop.doc_signed,
         laptop.cpu,
-        laptop.ram ? parseInt(laptop.ram) : null,
-        laptop.storage ? parseInt(laptop.storage) : null,
+        laptop.ram,
+        laptop.storage,
         laptop.notes
     ]);
 }
