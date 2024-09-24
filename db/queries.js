@@ -53,6 +53,30 @@ async function insertTablet(tablet) {
     console.log("Tablet data written.");
 }
 
+// update tablet data
+async function updateTablet(tablet) {
+    console.log("Updating tablet DB...");
+
+    try {
+        await pool.query(
+            `UPDATE tablets
+            SET model=$1, status=$2, user_id=$3, notes=$4, doc_signed=$5
+            WHERE id=$6;`
+        , [
+            tablet.model,
+            tablet.status,
+            tablet.user_id,
+            tablet.notes,
+            tablet.doc_signed,
+            tablet.id
+        ]);
+    } catch (error) {
+        console.log(error);
+    }
+
+    console.log("Tablet DB updated.");
+}
+
 // update laptop data
 async function updateLaptop(laptop) {
     await pool.query(
@@ -83,8 +107,9 @@ async function deleteLaptop(laptopId) {
 export default {
     getAllLaptops,
     getAllTablets,
-    insertLaptop,
     insertTablet,
+    updateTablet,
+    insertLaptop,
     updateLaptop,
     deleteLaptop,
 }

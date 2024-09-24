@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update form</title>
+</head>
+<body>
+    <%- include("partials/navigationMenu.ejs") %>
+    <h1>Update data</h1>
+    <form action="/tablets/update/<%= tabletData.id %>" method="post">
+        <label for="model">Model:</label>
+        <input type="text" name="model" id="model" value=<%= tabletData.model %>>
+
+        <label for="status">Status:</label>
+        <select name="status" id="status">
+            <option value="Available" <%= tabletData.status === "Available" ? "selected" : "" %>>Available</option>
+            <option value="Not available" <%= tabletData.status === "Not available" ? "selected" : "" %>>Not available</option>
+            <option value="Unknown location" <%= tabletData.status === "Unknown location" ? "selected" : "" %>>Unknown Location</option>
+            <option value="Temporary unavailable" <%= tabletData.status === "Temporary unavailable" ? "selected" : "" %>>Temporary unavailable</option>
+            <option value="Reserved" <%= tabletData.status === "Reserved" ? "selected" : "" %>>Reserved</option>
+            <option value="Damaged" <%= tabletData.status === "Damaged" ? "selected" : "" %>>Damaged</option>
+            <option value="Not in use" <%= tabletData.status === "Not in use" ? "selected" : "" %>>Not in use</option>
+        </select>
+
+        <label for="user_id">User ID:</label>
+        <input type="number" name="user_id" id="user_id" value="<%= tabletData.user_id %>">
+
+        <label for="doc_signed">Document signed:</label>
+        <input type="checkbox" name="doc_signed" id="doc_signed" <%= tabletData.doc_signed === true ? "checked" : "" %> >
+
+        <label for="notes">Notes:</label>
+        <textarea name="notes" id="notes"><%= tabletData.notes %></textarea>
+
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

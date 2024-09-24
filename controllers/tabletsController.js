@@ -40,8 +40,40 @@ async function tabletsNewPost(req, res) {
     res.redirect("/tablets");
 }
 
+// GET /tablets/update/:tabletId -> display form for updating data
+async function tabletsUpdateGet(req, res) {
+    const tabletIdToUpdate = parseInt(req.params.tabletId);
+    const allTablets = await db.getAllTablets();
+    const tabletToUpdate = allTablets.find(tablet => tablet.id === tabletIdToUpdate);
+
+    if (!tabletToUpdate) {
+        return res.status(404).json({msg: `Laptop with ID: ${tabletIdToUpdate} was not found!`});
+    }
+
+    res.render("updateTabletForm", {tabletData: tabletToUpdate});
+}
+
+// POST /tablets/update/:tabletId -> updating data in db
+async function tabletsUpdatePost(req, res) {
+    let tablet = req.body;
+    tablet.id = req.params.tabletId;
+    tablet = tabletDataCorrection(tablet);
+
+    try {
+        console.log(`Updating tablet with ID: ${tablet.id}...`);
+        await db.updateTablet(tablet);
+    } catch (error) {
+        console.log(error);
+    }
+
+    console.log("Update successfull.");
+    res.redirect("/tablets");
+}
+
 export default tabletsController = {
     tabletsGet,
     tabletsNewGet,
     tabletsNewPost,
+    tabletsUpdateGet,
+    tabletsUpdatePost,
 }
