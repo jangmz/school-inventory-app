@@ -37,6 +37,11 @@
                         <td><%= laptop.storage %> GB</td>
                         <td><%= laptop.notes %></td>
                         <td><a href="/laptops/update/<%= laptop.id %>">Edit</a></td>
+                        <td>
+                            <form action="/laptops/delete/<%= laptop.id %>" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 <% }) %>
             </tbody>

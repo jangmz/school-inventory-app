@@ -79,10 +79,24 @@ async function laptopsUpdatePost(req, res) {
     res.redirect("/laptops");
 }
 
+// POST /laptop/delete/:laptopId -> deletes laptop data in DB
+async function laptopsDeletePost(req, res) {
+    try {
+        const laptopId = req.params.laptopId;
+        console.log(`Deleting laptop with ID: ${laptopId}...`);
+        await db.deleteLaptop(laptopId);
+    } catch (error) {
+        console.log(error);
+    }
+    console.log("Successfully deleted.");
+    res.redirect("/laptops");
+}
+
 export default laptopsController = {
     laptopsGet,
     laptopsNewGet,
     laptopsNewPost,
     laptopsUpdateGet,
     laptopsUpdatePost,
+    laptopsDeletePost,
 }

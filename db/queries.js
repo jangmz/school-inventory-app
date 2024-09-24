@@ -58,10 +58,18 @@ async function updateLaptop(laptop) {
     );
 }
 
+// delete laptop entry
+async function deleteLaptop(laptopId) {
+    await pool.query(
+        `DELETE FROM laptops WHERE id=$1;`
+    , [laptopId]);
+}
+
 export default {
     getAllLaptops,
     getAllTablets,
     insertLaptop,
     insertTablet,
     updateLaptop,
+    deleteLaptop,
 }
