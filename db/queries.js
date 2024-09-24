@@ -14,25 +14,33 @@ async function getAllTablets() {
 
 // insert new laptop in to DB
 async function insertLaptop(laptop) {
-    await pool.query(`
-        INSERT INTO laptops(id, model, status, user_id, doc_signed, cpu, ram, storage, notes)
-        VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);   
-    `, [
-        laptop.id,
-        laptop.model,
-        laptop.status,
-        laptop.user_id,
-        laptop.doc_signed,
-        laptop.cpu,
-        laptop.ram,
-        laptop.storage,
-        laptop.notes
-    ]);
+    console.log("Inserting laptop in progress...");
+
+    try {
+        await pool.query(`
+            INSERT INTO laptops(id, model, status, user_id, doc_signed, cpu, ram, storage, notes)
+            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);   
+        `, [
+            laptop.id,
+            laptop.model,
+            laptop.status,
+            laptop.user_id,
+            laptop.doc_signed,
+            laptop.cpu,
+            laptop.ram,
+            laptop.storage,
+            laptop.notes
+        ]);
+    } catch (error) {
+        console.log(error);
+    }
+    
+    console.log("Inserted.");
 }
 
 // insert new tablet in to DB
 async function insertTablet(tablet) {
-    console.log("Writting tablet to DB...");
+    console.log("Inserting tablet to DB...");
 
     try {
         await pool.query(`
@@ -50,7 +58,7 @@ async function insertTablet(tablet) {
         console.log(error);
     }
     
-    console.log("Tablet data written.");
+    console.log("Inserted.");
 }
 
 // update tablet data
@@ -74,34 +82,64 @@ async function updateTablet(tablet) {
         console.log(error);
     }
 
-    console.log("Tablet DB updated.");
+    console.log("Updated.");
+}
+
+// deleting tablet
+async function deleteTablet(tabletId) {
+    console.log("Tablet deletion from DB in progress...");
+
+    try {
+        await pool.query(
+            `DELETE FROM tablets WHERE id=$1;`
+        , [tabletId]);
+    } catch (error) {
+        console.log(error);
+    }
+
+    console.log("Deleted.");
 }
 
 // update laptop data
 async function updateLaptop(laptop) {
-    await pool.query(
-        `UPDATE laptops
-        SET model=$1, status=$2, user_id=$3, doc_signed=$4, cpu=$5, ram=$6, storage=$7, notes=$8
-        WHERE id=$9;`,
-        [
-            laptop.model, 
-            laptop.status, 
-            laptop.user_id, 
-            laptop.doc_signed, 
-            laptop.cpu, 
-            laptop.ram, 
-            laptop.storage, 
-            laptop.notes, 
-            laptop.id
-        ]
-    );
+    console.log("Updating laptop data...");
+    try {
+        await pool.query(
+            `UPDATE laptops
+            SET model=$1, status=$2, user_id=$3, doc_signed=$4, cpu=$5, ram=$6, storage=$7, notes=$8
+            WHERE id=$9;`,
+            [
+                laptop.model, 
+                laptop.status, 
+                laptop.user_id, 
+                laptop.doc_signed, 
+                laptop.cpu, 
+                laptop.ram, 
+                laptop.storage, 
+                laptop.notes, 
+                laptop.id
+            ]
+        );
+    } catch (error) {
+        console.log(error);
+    }
+
+    console.log("Updated.");
 }
 
 // delete laptop entry
 async function deleteLaptop(laptopId) {
-    await pool.query(
-        `DELETE FROM laptops WHERE id=$1;`
-    , [laptopId]);
+    console.log("Deleting laptop in progress...");
+
+    try {
+        await pool.query(
+            `DELETE FROM laptops WHERE id=$1;`
+        , [laptopId]);
+    } catch (error) {
+        console.log(error);
+    }
+
+    console.log("Deleted.");
 }
 
 export default {
@@ -109,6 +147,7 @@ export default {
     getAllTablets,
     insertTablet,
     updateTablet,
+    deleteTablet,
     insertLaptop,
     updateLaptop,
     deleteLaptop,

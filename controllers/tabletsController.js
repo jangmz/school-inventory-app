@@ -53,7 +53,7 @@ async function tabletsUpdateGet(req, res) {
     res.render("updateTabletForm", {tabletData: tabletToUpdate});
 }
 
-// POST /tablets/update/:tabletId -> updating data in db
+// POST /tablets/update/:tabletId -> updating tablet data in db
 async function tabletsUpdatePost(req, res) {
     let tablet = req.body;
     tablet.id = req.params.tabletId;
@@ -70,10 +70,26 @@ async function tabletsUpdatePost(req, res) {
     res.redirect("/tablets");
 }
 
+// POST /tablets/delete/:tabletId -> deleting tablet in DB
+async function tabletsDeletePost(req, res) {
+    const tabletId = parseInt(req.params.tabletId);
+
+    try {
+        console.log(`Deleting tablet with ID: ${tabletId}...`);
+        await db.deleteTablet(tabletId);
+    } catch (error) {
+        console.log(error);
+    }
+
+    console.log("Delete successfull.");
+    res.redirect("/tablets");
+}
+
 export default tabletsController = {
     tabletsGet,
     tabletsNewGet,
     tabletsNewPost,
     tabletsUpdateGet,
     tabletsUpdatePost,
+    tabletsDeletePost,
 }

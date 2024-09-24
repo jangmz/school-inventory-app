@@ -8,5 +8,6 @@ tabletsRouter.get("/new", tabletsController.tabletsNewGet);
 tabletsRouter.post("/new", tabletsController.tabletsNewPost);
 tabletsRouter.get("/update/:tabletId", tabletsController.tabletsUpdateGet);
 tabletsRouter.post("/update/:tabletId", tabletsController.tabletsUpdatePost);
+tabletsRouter.post("/delete/:tabletId", tabletsController.tabletsDeletePost);
 
 export default tabletsRouter;
