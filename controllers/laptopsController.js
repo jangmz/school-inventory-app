@@ -31,10 +31,11 @@ async function laptopsNewPost(req, res) {
     try {
         console.log("Adding new laptop...");
 
-        const newLaptop = req.body;
+        let newLaptop = req.body;
 
         // TODO: transfer checking of input data from "queries.js" in to here, send sanitized data
-        newLaptop.doc_signed === "on" ? newLaptop.doc_signed = true : newLaptop.doc_signed = false;
+        //newLaptop.doc_signed === "on" ? newLaptop.doc_signed = true : newLaptop.doc_signed = false;
+        newLaptop = laptopDataCorrection(newLaptop);
 
         // input data to DB
         await db.insertLaptop(newLaptop);
