@@ -26,11 +26,19 @@ function tabletsNewGet(req, res) {
 
 // POST /tablets/new -> inserts a new tablet into DB
 async function tabletsNewPost(req, res) {
+    let newTablet = req.body;
+    newTablet = tabletDataCorrection(newTablet);
+
+    // check if ID exists in DB
+    const allTablets = await db.getAllTablets();
+    const tabletExists = allTablets.find(tablet => tablet.id === newTablet.id);
+
+    if (tabletExists) {
+        return res.status(400).json({msg: `Tablet with ID ${newTablet.id} already exists! Choose different ID.`});
+    }
+
     try {
         console.log("Inserting new tablet...");
-        let newTablet = req.body;
-        newTablet = tabletDataCorrection(newTablet);
-        console.log(newTablet);
         await db.insertTablet(newTablet);
     } catch (error) {
         console.log(error);

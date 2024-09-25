@@ -28,14 +28,20 @@ function laptopsNewGet(req, res) {
 
 // POST /laptops/new -> inserts new laptop into DB
 async function laptopsNewPost(req, res) {
+    let newLaptop = req.body;
+    newLaptop = laptopDataCorrection(newLaptop);
+
+    // check if ID already exists in the DB
+    const allLaptops = await db.getAllLaptops();
+    const laptopExists = allLaptops.find(laptop => laptop.id === newLaptop.id);
+
+    if (laptopExists) {
+        return res.status(400).json({msg: `Laptop with ID ${newLaptop.id} already exists! Choose new ID.`});
+    }
+
+    // insert data into DB
     try {
         console.log("Adding new laptop...");
-
-        let newLaptop = req.body;
-
-        newLaptop = laptopDataCorrection(newLaptop);
-
-        // input data to DB
         await db.insertLaptop(newLaptop);
 
         console.log("Successfully added.");
