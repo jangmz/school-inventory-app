@@ -1,8 +1,10 @@
 import db from "../db/queries.js";
+import csv from "csv-parser";
+import fs from "fs";
 
 let laptopsController = {};
 
-// function that transforms data into correct formats
+// transforms data into correct formats
 function laptopDataCorrection(laptop) {
     laptop.id = laptop.id ? parseInt(laptop.id) : null;
     laptop.user_id = laptop.user_id ? parseInt(laptop.user_id) : null;
@@ -11,6 +13,16 @@ function laptopDataCorrection(laptop) {
     laptop.doc_signed = laptop.doc_signed === "on" ? true : false;
 
     return laptop;
+}
+
+// transforms keys into lowercase
+function keysToLowerCase(data) {
+    const convertedData = {};
+    for(const key in data) {
+        convertedData[key.toLowerCase()] = data[key];
+    }
+
+    return convertedData;
 }
 
 // GET /laptops -> displays all laptops in the DB
@@ -98,6 +110,63 @@ async function laptopsDeletePost(req, res) {
     res.redirect("/laptops");
 }
 
+// GET /upload-data -> form for uploading csv file of data
+async function laptopsUploadDataGet(req, res) {
+    res.render("uploadLaptopDataForm");
+}
+
+// POST /upload-data -> uploads data to DB
+async function laptopsUploadDataPost(req, res) {
+    const results = [];
+    const filePath = req.file.path;
+    let rowsInserted = 0;
+
+    // Open stream to read file and collect rows in results array
+    console.log("Reading file...");
+    try {
+        await new Promise((resolve, reject) => {
+            fs.createReadStream(filePath)
+                .pipe(csv())
+                .on("data", row => {
+                    results.push(row); // data is OK
+                })
+                .on("end", resolve)
+                .on("error", reject);
+        });
+    } catch (error) {
+        console.error("Error reading CSV file:", error);
+        return res.status(500).json({msg: "Error reading file."});
+    }
+
+    // transform data into correct formats
+    const correctedResults = [];
+    results.map(row => {
+        let convertedRow = keysToLowerCase(row);
+        convertedRow = laptopDataCorrection(convertedRow);
+        correctedResults.push(convertedRow);
+    });
+
+    console.log("Started inserting data...");
+
+    try {
+        // inserting all rows with data correction
+        await Promise.all(correctedResults.map(async row => {
+            row = laptopDataCorrection(row);
+            await db.insertLaptop(row);
+            rowsInserted++;
+        }));
+
+        // Delete the file after processing
+        fs.unlinkSync(filePath);
+
+        console.log(`Finished: ${rowsInserted} rows inserted.`);
+        res.redirect("/laptops");
+    } catch (error) {
+        console.error("Error inserting data:", error);
+        res.status(500).json({ msg: "Error processing file. Check error logs." });
+    }
+}
+
 export default laptopsController = {
     laptopsGet,
     laptopsNewGet,
@@ -105,4 +174,6 @@ export default laptopsController = {
     laptopsUpdateGet,
     laptopsUpdatePost,
     laptopsDeletePost,
+    laptopsUploadDataGet,
+    laptopsUploadDataPost,
 }
