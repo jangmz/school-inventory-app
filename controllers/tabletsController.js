@@ -1,4 +1,7 @@
 import db from "../db/queries.js";
+import { keysToLowerCase } from "./laptopsController.js";
+import fs from "fs";
+import csv from "csv-parser";
 
 let tabletsController = {};
 
@@ -93,6 +96,63 @@ async function tabletsDeletePost(req, res) {
     res.redirect("/tablets");
 }
 
+// GET /upload-data -> form for uploading csv file of data
+async function tabletsUploadDataGet(req, res) {
+    res.render("uploadTabletDataForm");
+}
+
+// POST /upload-data -> uploads data to DB
+async function tabletsUploadDataPost(req, res) {
+    const results = [];
+    const filePath = req.file.path;
+    let rowsInserted = 0;
+
+    // Open stream to read file and collect rows in results array
+    console.log("Reading file...");
+    try {
+        await new Promise((resolve, reject) => {
+            fs.createReadStream(filePath)
+                .pipe(csv())
+                .on("data", row => {
+                    results.push(row); // data is OK
+                })
+                .on("end", resolve)
+                .on("error", reject);
+        });
+    } catch (error) {
+        console.error("Error reading CSV file:", error);
+        return res.status(500).json({msg: "Error reading file."});
+    }
+
+    // transform data into correct formats
+    const correctedResults = [];
+    results.map(row => {
+        let convertedRow = keysToLowerCase(row);
+        convertedRow = tabletDataCorrection(convertedRow);
+        correctedResults.push(convertedRow);
+    });
+
+    console.log("Started inserting data...");
+
+    try {
+        // inserting all rows with data correction
+        await Promise.all(correctedResults.map(async row => {
+            row = tabletDataCorrection(row);
+            await db.insertTablet(row);
+            rowsInserted++;
+        }));
+
+        // Delete the file after processing
+        fs.unlinkSync(filePath);
+    } catch (error) {
+        console.error("Error inserting data:", error);
+        res.status(500).json({ msg: "Error processing file. Check error logs." });
+    }
+
+    console.log(`Finished: ${rowsInserted} rows inserted.`);
+    res.redirect("/tablets");
+}
+
 export default tabletsController = {
     tabletsGet,
     tabletsNewGet,
@@ -100,4 +160,6 @@ export default tabletsController = {
     tabletsUpdateGet,
     tabletsUpdatePost,
     tabletsDeletePost,
+    tabletsUploadDataGet,
+    tabletsUploadDataPost,
 }
