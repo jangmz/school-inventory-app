@@ -16,7 +16,7 @@ function laptopDataCorrection(laptop) {
 }
 
 // transforms keys into lowercase
-function keysToLowerCase(data) {
+export function keysToLowerCase(data) {
     const convertedData = {};
     for(const key in data) {
         convertedData[key.toLowerCase()] = data[key];
