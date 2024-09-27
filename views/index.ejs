@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
     <title>School Inventory</title>
 </head>
 <body>
-    <h1>Home</h1>
-    <p>Displays categories.</p>
-    <%- include("partials/navigationMenu.ejs") %>
+    <div class="container">
+        <div class="side-menu">
+            <h1 class="menu-title">Home</h1>
+            <%- include("partials/navigationMenu.ejs") %>
+        </div>
+        <div class="content">Content.</div>
+    </div>
 </body>
 </html>
