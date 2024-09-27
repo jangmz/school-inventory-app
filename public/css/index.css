@@ -21,6 +21,8 @@ nav ul a {
     min-height: 100vh;
 }
 
+/* SIDE MENU */
+
 .side-menu {
     flex: 0 0 auto; /* takes the minimum space */
     height: 100%;
@@ -72,6 +74,8 @@ nav ul a {
     border: 1px solid darkslategrey;
 }
 
+/* MAIN SCREEN */
+
 .content {
     flex-grow: 1;
     margin-right: 20px;
@@ -100,6 +104,41 @@ nav ul a {
 
 .content table tbody tr:hover {
     background-color: rgb(218, 238, 238);
+}
+
+.content table tbody td {
+    padding: 10px;
+}
+
+.content table tbody .actions-cell {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MAIN SCREEN BUTTONS */
+
+.edit-btn {
+    text-decoration: none;
+    font-size: 14px;
+    background-color: darkslategrey;
+    color:white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.delete-btn {
+    border: 0;
+    border-radius: 5px;
+    background-color: indianred;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.delete-btn:hover {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {

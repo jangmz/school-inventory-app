@@ -42,10 +42,10 @@
                                 <td><%= laptop.ram %> GB</td>
                                 <td><%= laptop.storage %> GB</td>
                                 <td><%= laptop.notes %></td>
-                                <td>
-                                    <a href="/laptops/update/<%= laptop.id %>">Edit</a>
+                                <td class="actions-cell">
+                                    <a class="edit-btn" href="/laptops/update/<%= laptop.id %>">Edit</a>
                                     <form action="/laptops/delete/<%= laptop.id %>" method="post">
-                                        <button type="submit">Delete</button>
+                                        <button class="delete-btn" type="submit">Delete</button>
                                     </form>
                                 </td>
                             </tr>
