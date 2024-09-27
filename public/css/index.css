@@ -4,7 +4,7 @@ body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-nav > ul {
+nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -13,7 +13,6 @@ nav > ul {
 nav ul a {
     text-decoration: none;
     color: white;
-    padding: 10px;
 }
 
 .container {
@@ -29,11 +28,26 @@ nav ul a {
     padding: 30px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.5);
     height: 100vh;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .menu-title {
     color:white;
-    margin-top: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.menu-item {
+    padding: 5px 10px;
+}
+
+.menu-item:hover {
+    background-color: rgb(61, 136, 136);
+    border-radius: 5px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
 }
 
 .nav-menu ul {
@@ -44,4 +58,20 @@ nav ul a {
 
 .content {
     flex-grow: 1;
+}
+
+.add-new-btn {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+
+.add-new-btn:hover {
+    color: darkslategrey;
+    background-color: white;
+    border: 1px solid darkslategrey;
 }
