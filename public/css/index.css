@@ -56,10 +56,6 @@ nav ul a {
     gap: 10px;
 }
 
-.content {
-    flex-grow: 1;
-}
-
 .add-new-btn {
     text-decoration: none;
     color: white;
@@ -74,4 +70,40 @@ nav ul a {
     color: darkslategrey;
     background-color: white;
     border: 1px solid darkslategrey;
+}
+
+.content {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.content table {
+    width: 100%;
+    font-size: 16px;
+    border-collapse: collapse; /* removes borders between cells */
+    margin: 20px 0;
+    text-align: center;
+}
+
+.content table thead {
+    background-color: rgb(165, 207, 207);
+}
+
+.content table thead th {
+    padding: 12px;
+    border-bottom: 2px solid darkslategrey;
+}
+
+.content table tbody tr {
+    border-bottom: 1px solid rgb(152, 204, 204);
+}
+
+.content table tbody tr:hover {
+    background-color: rgb(218, 238, 238);
+}
+
+@media screen and (max-width: 600px) {
+    .content table {
+        font-size: 12px;
+    }
 }

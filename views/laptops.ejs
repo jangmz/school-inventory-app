@@ -18,15 +18,16 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>ID</td>
-                            <td>Model</td>
-                            <td>Status</td>
-                            <td>User (ID)</td>
-                            <td>Document</td>
-                            <td>CPU</td>
-                            <td>RAM</td>
-                            <td>Storage</td>
-                            <td>Notes</td>
+                            <th>ID</th>
+                            <th>Model</th>
+                            <th>Status</th>
+                            <th>User (ID)</th>
+                            <th>Document</th>
+                            <th>CPU</th>
+                            <th>RAM</th>
+                            <th>Storage</th>
+                            <th>Notes</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,8 +42,8 @@
                                 <td><%= laptop.ram %> GB</td>
                                 <td><%= laptop.storage %> GB</td>
                                 <td><%= laptop.notes %></td>
-                                <td><a href="/laptops/update/<%= laptop.id %>">Edit</a></td>
                                 <td>
+                                    <a href="/laptops/update/<%= laptop.id %>">Edit</a>
                                     <form action="/laptops/delete/<%= laptop.id %>" method="post">
                                         <button type="submit">Delete</button>
                                     </form>
