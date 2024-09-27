@@ -3,49 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
     <title>Laptops Inventory</title>
 </head>
 <body>
-    <%- include("partials/navigationMenu.ejs") %>
-    <a href="/laptops/new">Add new laptop</a>
-    <h1>Laptops</h1>
-    <% if (locals.laptopsList) { %>
-        <table>
-            <thead>
-                <tr>
-                    <td>ID</td>
-                    <td>Model</td>
-                    <td>Status</td>
-                    <td>User (ID)</td>
-                    <td>Document</td>
-                    <td>CPU</td>
-                    <td>RAM</td>
-                    <td>Storage</td>
-                    <td>Notes</td>
-                </tr>
-            </thead>
-            <tbody>
-                <% laptopsList.map(laptop => { %>
-                    <tr>
-                        <td><%= laptop.id %></td>
-                        <td><%= laptop.model %></td>
-                        <td><%= laptop.status %></td>
-                        <td><%= laptop.user_id %></td>
-                        <td><%= laptop.doc_signed %></td>
-                        <td><%= laptop.cpu %></td>
-                        <td><%= laptop.ram %> GB</td>
-                        <td><%= laptop.storage %> GB</td>
-                        <td><%= laptop.notes %></td>
-                        <td><a href="/laptops/update/<%= laptop.id %>">Edit</a></td>
-                        <td>
-                            <form action="/laptops/delete/<%= laptop.id %>" method="post">
-                                <button type="submit">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                <% }) %>
-            </tbody>
-        </table>
-    <% } %>
+    <div class="container">
+        <div class="side-menu">
+            <h1 class="menu-title">Laptops</h1>
+            <%- include("partials/navigationMenu.ejs") %>
+            <a href="/laptops/new" class="add-new-btn">Add new laptop</a>
+        </div>
+        <div class="content">
+            <% if (locals.laptopsList) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Model</td>
+                            <td>Status</td>
+                            <td>User (ID)</td>
+                            <td>Document</td>
+                            <td>CPU</td>
+                            <td>RAM</td>
+                            <td>Storage</td>
+                            <td>Notes</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% laptopsList.map(laptop => { %>
+                            <tr>
+                                <td><%= laptop.id %></td>
+                                <td><%= laptop.model %></td>
+                                <td><%= laptop.status %></td>
+                                <td><%= laptop.user_id %></td>
+                                <td><%= laptop.doc_signed %></td>
+                                <td><%= laptop.cpu %></td>
+                                <td><%= laptop.ram %> GB</td>
+                                <td><%= laptop.storage %> GB</td>
+                                <td><%= laptop.notes %></td>
+                                <td><a href="/laptops/update/<%= laptop.id %>">Edit</a></td>
+                                <td>
+                                    <form action="/laptops/delete/<%= laptop.id %>" method="post">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } %>
+        </div>
+    </div>
 </body>
 </html>
