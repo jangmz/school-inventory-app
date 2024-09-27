@@ -34,6 +34,8 @@ nav ul a {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    position:sticky;
+    top: 0;
 }
 
 .menu-title {
@@ -79,6 +81,8 @@ nav ul a {
 .content {
     flex-grow: 1;
     margin-right: 20px;
+    overflow-y: auto;
+    height: calc(100vh - 20px);
 }
 
 .content table {
