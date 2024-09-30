@@ -3,38 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
     <title>New Tablet Entry</title>
 </head>
 <body>
-    <%- include("partials/navigationMenu.ejs") %>
-    <form action="/tablets/new" method="post">
-        <label for="id">Inventory number:</label>
-        <input type="number" name="id" id="id">
-
-        <label for="model">Model:</label>
-        <input type="text" name="model" id="model">
-
-        <label for="status">Status</label>
-        <select name="status" id="status">
-            <option value="Available">Available</option>
-            <option value="Not available">Not available</option>
-            <option value="Unknown location">Unknown Location</option>
-            <option value="Temporary unavailable">Temporary unavailable</option>
-            <option value="Reserved">Reserved</option>
-            <option value="Damaged">Damaged</option>
-            <option value="Not in use">Not in use</option>
-        </select>
-        
-        <label for="user_id">User:</label>
-        <input type="text" name="user_id" id="user_id">
-        
-        <label for="notes">Notes:</label>
-        <textarea name="notes" id="notes"></textarea>
-        
-        <label for="doc_signed">Document:</label>
-        <input type="checkbox" name="doc_signed" id="doc_signed">
-        
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <div class="side-menu">
+            <h1 class="menu-title">New Tablet</h1>
+            <%- include("partials/navigationMenu.ejs") %>
+        </div>
+        <div class="content center-form">
+            <form class="insert-form" action="/tablets/new" method="post">
+                <h1 class="form-title">Add new tablet</h1>
+                <div class="inputs-full-row form-section">
+                    <div class="form-input-field">
+                        <label for="id">Inventory number:</label>
+                        <input type="number" name="id" id="id">
+                    </div>
+                    <div class="form-input-field">
+                        <label for="model">Model:</label>
+                        <input type="text" name="model" id="model">
+                    </div>
+                    <div class="form-input-field">
+                        <label for="status">Status</label>
+                        <select name="status" id="status">
+                            <option value="Available">Available</option>
+                            <option value="Not available">Not available</option>
+                            <option value="Unknown location">Unknown Location</option>
+                            <option value="Temporary unavailable">Temporary unavailable</option>
+                            <option value="Reserved">Reserved</option>
+                            <option value="Damaged">Damaged</option>
+                            <option value="Not in use">Not in use</option>
+                        </select>
+                    </div>
+                    <div class="form-input-field">
+                        <label for="user_id">User:</label>
+                        <input type="text" name="user_id" id="user_id">
+                    </div>
+                    <div class="form-input-field">
+                        <label for="notes">Notes:</label>
+                        <textarea name="notes" id="notes"></textarea>
+                    </div>
+                    <div class="">
+                        <label for="doc_signed">Document:</label>
+                        <input type="checkbox" name="doc_signed" id="doc_signed">
+                    </div>
+                </div>
+                <div class="inputs-submit">
+                    <button class="submit-btn" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
