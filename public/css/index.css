@@ -60,22 +60,6 @@ nav ul a {
     gap: 10px;
 }
 
-.add-new-btn {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 10px 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-}
-
-.add-new-btn:hover {
-    color: darkslategrey;
-    background-color: white;
-    border: 1px solid darkslategrey;
-}
-
 /* MAIN SCREEN */
 
 .content {
@@ -123,6 +107,29 @@ nav ul a {
 
 /* MAIN SCREEN BUTTONS */
 
+.add-new-btn,
+.submit-btn {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 0px 0 5px rgba(0,0,0,0.5);
+}
+
+.submit-btn {
+    background-color: darkslategrey;
+}
+
+.add-new-btn:hover,
+.submit-btn:hover {
+    color: darkslategrey;
+    background-color: white;
+    border: 1px solid darkslategrey;
+    cursor: pointer;
+}
+
 .edit-btn {
     text-decoration: none;
     font-size: 14px;
@@ -143,6 +150,64 @@ nav ul a {
 
 .delete-btn:hover {
     cursor: pointer;
+}
+
+/* FORMS */
+
+.center-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.insert-form {
+    padding: 50px;
+    background-color: rgb(218, 238, 238);
+    border-radius: 15px;
+    box-shadow: 0px 0 10px rgba(0,0,0,0.5);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    column-gap: 50px;
+}
+
+.form-title {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    text-transform: uppercase;
+    justify-self: center;
+}
+
+.inputs-1-2 {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.inputs-2-2 {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.inputs-submit {
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+    align-self: center;
+    justify-self: center;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-input-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input-field input {
+    border: 1px solid rgb(172, 185, 185);
 }
 
 @media screen and (max-width: 600px) {

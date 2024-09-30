@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="/css/index.css">
     <title>New Laptop Entry</title>
 </head>
 <body>
@@ -12,44 +12,70 @@
             <h1 class="menu-title">New Laptop</h1>
             <%- include("partials/navigationMenu.ejs") %>
         </div>
-        <div class="content">
-            <form action="/laptops/new" method="post">
-                <label for="id">Inventory number:</label>
-                <input type="number" name="id" id="id" required>
-        
-                <label for="model">Model:</label>
-                <input type="text" name="model" id="model" required>
-        
-                <label for="status">Status</label>
-                <select name="status" id="status">
-                    <option value="Available">Available</option>
-                    <option value="Not available">Not available</option>
-                    <option value="Unknown location">Unknown Location</option>
-                    <option value="Temporary unavailable">Temporary unavailable</option>
-                    <option value="Reserved">Reserved</option>
-                    <option value="Damaged">Damaged</option>
-                    <option value="Not in use">Not in use</option>
-                </select>
+        <div class="content center-form">
+            <form class="insert-form" action="/laptops/new" method="post">
+                <h1 class="form-title" >Add new laptop</h1>
+
+                <div class="inputs-1-2 form-section">
+                    <div class="form-input-field">
+                        <label for="id">Inventory number:</label>
+                        <input type="number" name="id" id="id" required>
+                    </div>
+            
+                    <div class="form-input-field">
+                        <label for="model">Model:</label>
+                        <input type="text" name="model" id="model" required>
+                    </div>
+            
+                    <div class="form-input-field">
+                        <label for="status">Status</label>
+                        <select name="status" id="status">
+                            <option value="Available">Available</option>
+                            <option value="Not available">Not available</option>
+                            <option value="Unknown location">Unknown Location</option>
+                            <option value="Temporary unavailable">Temporary unavailable</option>
+                            <option value="Reserved">Reserved</option>
+                            <option value="Damaged">Damaged</option>
+                            <option value="Not in use">Not in use</option>
+                        </select>
+                    </div>
+
+                    <div class="form-input-field">
+                        <label for="user">User:</label>
+                        <input type="number" name="user_id" id="user_id" min="1">
+                    </div>
+                    
+                    <div class="">
+                        <label for="doc_signed">Document:</label>
+                        <input type="checkbox" name="doc_signed" id="doc_signed">
+                    </div>
+                </div>
                 
-                <label for="user">User:</label>
-                <input type="number" name="user_id" id="user_id" min="1">
+                <div class="inputs-2-2 form-section">
+                    <div class="form-input-field">
+                        <label for="cpu">CPU:</label>
+                        <input type="text" name="cpu" id="cpu">
+                    </div>
+                    
+                    <div class="form-input-field">
+                        <label for="ram">RAM:</label>
+                        <input type="number" name="ram" id="ram" min="0">
+                    </div>
+                    
+                    <div class="form-input-field">
+                        <label for="storage">Storage:</label>
+                        <input type="number" name="storage" id="storage" min="0">
+                    </div>
+                    
+                    <div class="form-input-field">
+                        <label for="notes">Notes:</label>
+                        <textarea name="notes" id="notes"></textarea>
+                    </div>
+                </div>
                 
-                <label for="doc_signed">Document:</label>
-                <input type="checkbox" name="doc_signed" id="doc_signed">
-                
-                <label for="cpu">CPU:</label>
-                <input type="text" name="cpu" id="cpu">
-                
-                <label for="ram">RAM:</label>
-                <input type="number" name="ram" id="ram" min="0">
-                
-                <label for="storage">Storage:</label>
-                <input type="number" name="storage" id="storage" min="0">
-                
-                <label for="notes">Notes:</label>
-                <textarea name="notes" id="notes"></textarea>
-                
-                <button type="submit">Submit</button>
+                <div class="inputs-submit">
+                    <button class="submit-btn" type="submit">Submit</button>
+                </div>
             </form>
         </div>
     </div>
