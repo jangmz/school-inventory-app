@@ -142,6 +142,18 @@ async function deleteLaptop(laptopId) {
     console.log("Deleted.");
 }
 
+// number of available laptops
+
+// number of taken laptops (not available + temporary unavailable)
+
+// number of laptops with unknown location status
+
+// number of reserved laptops
+
+// number of damaged laptops
+
+// number of laptops not in use
+
 export default {
     getAllLaptops,
     getAllTablets,
