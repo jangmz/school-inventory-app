@@ -144,10 +144,11 @@ async function deleteLaptop(laptopId) {
 
 // number of total laptops
 async function totalLaptops(){
-    const {row} = await pool.query(`
-        SELECT COUNT(id) as total 
+    const {rows} = await pool.query(`
+        SELECT COUNT(*) as total 
         FROM laptops;
-        `)
+        `);
+    return rows;
 }
 
 // number of available laptops
