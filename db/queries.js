@@ -174,10 +174,11 @@ async function unavailableLaptops() {
 // number of laptops with unknown location status
 async function unknownLocationLaptops() {
     const {rows} = await pool.query(`
-        SELECT COUNT(id) as unknown_location
+        SELECT COUNT(id) as unknown
         FROM laptops
         WHERE status='Unknown location';
         `);
+    return rows;
 }
 
 // number of reserved laptops
@@ -187,6 +188,7 @@ async function reservedLaptops() {
         FROM laptops
         WHERE status='Reserved';
         `);
+    return rows;
 }
 
 // number of damaged and laptops not in use
@@ -196,6 +198,7 @@ async function notInUseLaptops() {
         FROM laptops
         WHERE status='Damaged' OR status='Not in use';
         `);
+    return rows;
 }
 
 export default {
