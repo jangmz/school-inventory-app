@@ -143,16 +143,51 @@ async function deleteLaptop(laptopId) {
 }
 
 // number of available laptops
+async function availableLaptops() {
+    const {rows} = await pool.query(`
+            SELECT COUNT(id) as available 
+            FROM laptops
+            WHERE status='Available';
+        `);
+    return rows;
+}
 
 // number of taken laptops (not available + temporary unavailable)
+async function unavailableLaptops() {
+    const {rows} = await pool.query(`
+            SELECT COUNT(id) as unavailable
+            FROM laptops
+            WHERE status='Not available' OR 'Temporary unavailable';
+        `);
+    return rows;
+}
 
 // number of laptops with unknown location status
+async function unknownLocationLaptops() {
+    const {rows} = await pool.query(`
+        SELECT COUNT(id) as unknown_location
+        FROM laptops
+        WHERE status='Unknown location';
+        `);
+}
 
 // number of reserved laptops
+async function reservedLaptops() {
+    const {rows} = await pool.query(`
+        SELECT COUNT(id) as reserved
+        FROM laptops
+        WHERE status='Reserved';
+        `);
+}
 
-// number of damaged laptops
-
-// number of laptops not in use
+// number of damaged and laptops not in use
+async function notInUseLaptops() {
+    const {rows} = await pool.query(`
+        SELECT COUNT(id) as damaged
+        FROM laptops
+        WHERE status='Damaged' OR status='Not in use';
+        `);
+}
 
 export default {
     getAllLaptops,
@@ -163,4 +198,9 @@ export default {
     insertLaptop,
     updateLaptop,
     deleteLaptop,
+    availableLaptops,
+    unavailableLaptops,
+    unknownLocationLaptops,
+    reservedLaptops,
+    notInUseLaptops
 }
