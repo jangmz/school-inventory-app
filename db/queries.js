@@ -142,6 +142,14 @@ async function deleteLaptop(laptopId) {
     console.log("Deleted.");
 }
 
+// number of total laptops
+async function totalLaptops(){
+    const {row} = await pool.query(`
+        SELECT COUNT(id) as totalLaptops 
+        FROM laptops;
+        `)
+}
+
 // number of available laptops
 async function availableLaptops() {
     const {rows} = await pool.query(`
@@ -198,6 +206,7 @@ export default {
     insertLaptop,
     updateLaptop,
     deleteLaptop,
+    totalLaptops,
     availableLaptops,
     unavailableLaptops,
     unknownLocationLaptops,
