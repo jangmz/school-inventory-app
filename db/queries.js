@@ -157,7 +157,7 @@ async function unavailableLaptops() {
     const {rows} = await pool.query(`
             SELECT COUNT(id) as unavailable
             FROM laptops
-            WHERE status='Not available' OR 'Temporary unavailable';
+            WHERE status='Not available' OR status='Temporary unavailable';
         `);
     return rows;
 }
