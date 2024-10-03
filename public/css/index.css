@@ -153,8 +153,10 @@ nav ul a {
     padding: 5px 10px;
 }
 
+.edit-btn:hover,
 .delete-btn:hover {
     cursor: pointer;
+    box-shadow: 0px 0 10px rgba(0,0,0,0.5);
 }
 
 /* INFO CARDS */
