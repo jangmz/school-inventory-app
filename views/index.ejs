@@ -32,6 +32,26 @@
                     <p>Damaged/Not in use: <%= notInUseLaptops[0].damaged %></p>
                 </div>
             </div>
+
+            <h1 class="content-title">TABLETS</h1>
+            <div class="info-section">
+                <div class="info-card green-card">
+                    <h3>Available</h3>
+                    <p><%= availableTablets[0].available %> of <%= totalTablets[0].total %></p>
+                </div>
+
+                <div class="info-card red-card">
+                    <h3>Unavailable</h3>
+                    <p><%= unavailableTablets[0].unavailable %> of <%= totalTablets[0].total %></p>
+                </div>
+
+                <div class="info-card neutral-card">
+                    <h3>Other</h3>
+                    <p>Unknown location: <%= unknownLocationTablets[0].unknown %></p>
+                    <p>Reserved: <%= reservedTablets[0].reserved %></p>
+                    <p>Damaged/Not in use: <%= notInUseTablets[0].damaged %></p>
+                </div>
+            </div>
         </div>
     </div>
 </body>

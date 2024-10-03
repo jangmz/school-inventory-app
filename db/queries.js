@@ -1,41 +1,13 @@
 import pool from "./pool.js";
 
-// get all laptops from DB
-async function getAllLaptops() {
-    const { rows } = await pool.query("SELECT * FROM laptops ORDER BY id;");
-    return rows;
-}
+/*
+    ========== TABLET QUERIES ==========
+*/
 
 // get all tablets from DB
 async function getAllTablets() {
     const {rows} = await pool.query("SELECT * FROM tablets ORDER BY id;");
     return rows;
-}
-
-// insert new laptop in to DB
-async function insertLaptop(laptop) {
-    console.log("Inserting laptop in progress...");
-
-    try {
-        await pool.query(`
-            INSERT INTO laptops(id, model, status, user_id, doc_signed, cpu, ram, storage, notes)
-            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);   
-        `, [
-            laptop.id,
-            laptop.model,
-            laptop.status,
-            laptop.user_id,
-            laptop.doc_signed,
-            laptop.cpu,
-            laptop.ram,
-            laptop.storage,
-            laptop.notes
-        ]);
-    } catch (error) {
-        console.log(error);
-    }
-    
-    console.log("Inserted.");
 }
 
 // insert new tablet in to DB
@@ -98,6 +70,101 @@ async function deleteTablet(tabletId) {
     }
 
     console.log("Deleted.");
+}
+
+// number of total laptops
+async function totalTablets(){
+    const {rows} = await pool.query(`
+        SELECT COUNT(*) as total 
+        FROM tablets;
+        `);
+    return rows;
+}
+
+// number of available laptops
+async function availableTablets() {
+    const {rows} = await pool.query(`
+            SELECT COUNT(id) as available 
+            FROM tablets
+            WHERE status='Available';
+        `);
+    return rows;
+}
+
+// number of taken laptops (not available + temporary unavailable)
+async function unavailableTablets() {
+    const {rows} = await pool.query(`
+            SELECT COUNT(id) as unavailable
+            FROM tablets
+            WHERE status='Not available' OR status='Temporary unavailable';
+        `);
+    return rows;
+}
+
+// number of laptops with unknown location status
+async function unknownLocationTablets() {
+    const {rows} = await pool.query(`
+        SELECT COUNT(id) as unknown
+        FROM tablets
+        WHERE status='Unknown location';
+        `);
+    return rows;
+}
+
+// number of reserved laptops
+async function reservedTablets() {
+    const {rows} = await pool.query(`
+        SELECT COUNT(id) as reserved
+        FROM tablets
+        WHERE status='Reserved';
+        `);
+    return rows;
+}
+
+// number of damaged and laptops not in use
+async function notInUseTablets() {
+    const {rows} = await pool.query(`
+        SELECT COUNT(id) as damaged
+        FROM tablets
+        WHERE status='Damaged' OR status='Not in use';
+        `);
+    return rows;
+}
+
+/*
+    ========== LAPTOP QUERIES ==========
+*/
+
+// get all laptops from DB
+async function getAllLaptops() {
+    const { rows } = await pool.query("SELECT * FROM laptops ORDER BY id;");
+    return rows;
+}
+
+// insert new laptop in to DB
+async function insertLaptop(laptop) {
+    console.log("Inserting laptop in progress...");
+
+    try {
+        await pool.query(`
+            INSERT INTO laptops(id, model, status, user_id, doc_signed, cpu, ram, storage, notes)
+            VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);   
+        `, [
+            laptop.id,
+            laptop.model,
+            laptop.status,
+            laptop.user_id,
+            laptop.doc_signed,
+            laptop.cpu,
+            laptop.ram,
+            laptop.storage,
+            laptop.notes
+        ]);
+    } catch (error) {
+        console.log(error);
+    }
+    
+    console.log("Inserted.");
 }
 
 // update laptop data
@@ -207,6 +274,12 @@ export default {
     insertTablet,
     updateTablet,
     deleteTablet,
+    totalTablets,
+    availableTablets,
+    unavailableTablets,
+    unknownLocationTablets,
+    reservedTablets,
+    notInUseTablets,
     insertLaptop,
     updateLaptop,
     deleteLaptop,

@@ -9,13 +9,26 @@ async function statisticsLaptopsGet(req, res) {
     const reservedLaptops = await db.reservedLaptops();
     const notInUseLaptops = await db.notInUseLaptops();
 
+    const totalTablets = await db.totalTablets();
+    const availableTablets = await db.availableTablets();
+    const unavailableTablets = await db.unavailableTablets();
+    const unknownLocationTablets = await db.unknownLocationTablets();
+    const reservedTablets = await db.reservedTablets();
+    const notInUseTablets = await db.notInUseTablets();
+
     res.render("index", {
         totalLaptops,
         availableLaptops,
         unavailableLaptops,
         unknownLocationLaptops,
         reservedLaptops,
-        notInUseLaptops
+        notInUseLaptops,
+        totalTablets,
+        availableTablets,
+        unavailableTablets,
+        unknownLocationTablets,
+        reservedTablets,
+        notInUseTablets
     });
 }
 
