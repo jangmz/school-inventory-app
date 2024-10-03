@@ -3,45 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
     <title>Update form</title>
 </head>
 <body>
-    <%- include("partials/navigationMenu.ejs") %>
-    <h1>Update data</h1>
-    <form action="/laptops/update/<%= laptopData.id %>" method="post">
-        <label for="model">Model:</label>
-        <input type="text" name="model" id="model" value=<%= laptopData.model %>>
+    <div class="container">
+        <div class="side-menu">
+            <h1 class="menu-title">Edit laptop</h1>
+            <%- include("partials/navigationMenu.ejs") %>
+        </div>
+        <div class="content center-form">
+            <form class="insert-form" action="/laptops/update/<%= laptopData.id %>" method="post">
+                <h1 class="form-title">Edit laptop data</h1>
 
-        <label for="status">Status:</label>
-        <select name="status" id="status">
-            <option value="Available" <%= laptopData.status === "Available" ? "selected" : "" %>>Available</option>
-            <option value="Not available" <%= laptopData.status === "Not available" ? "selected" : "" %>>Not available</option>
-            <option value="Unknown location" <%= laptopData.status === "Unknown location" ? "selected" : "" %>>Unknown Location</option>
-            <option value="Temporary unavailable" <%= laptopData.status === "Temporary unavailable" ? "selected" : "" %>>Temporary unavailable</option>
-            <option value="Reserved" <%= laptopData.status === "Reserved" ? "selected" : "" %>>Reserved</option>
-            <option value="Damaged" <%= laptopData.status === "Damaged" ? "selected" : "" %>>Damaged</option>
-            <option value="Not in use" <%= laptopData.status === "Not in use" ? "selected" : "" %>>Not in use</option>
-        </select>
+                <div class="inputs-1-2 form-section">
+                    <div class="form-input-field">
+                        <label for="model">Model:</label>
+                        <input type="text" name="model" id="model" value=<%= laptopData.model %>>
+                    </div>
 
-        <label for="user_id">User ID:</label>
-        <input type="number" name="user_id" id="user_id" value="<%= laptopData.user_id %>">
-
-        <label for="doc_signed">Document signed:</label>
-        <input type="checkbox" name="doc_signed" id="doc_signed" <%= laptopData.doc_signed === true ? "checked" : "" %> >
-
-        <label for="cpu">CPU:</label>
-        <input type="text" name="cpu" id="cpu" value="<%= laptopData.cpu %>">
-
-        <label for="ram">RAM: [GB]</label>
-        <input type="number" name="ram" id="ram" value="<%= laptopData.ram %>">
-
-        <label for="storage">Storage: [GB]</label>
-        <input type="number" name="storage" id="storage" value="<%= laptopData.storage %>">
-
-        <label for="notes">Notes:</label>
-        <textarea name="notes" id="notes"><%= laptopData.notes %></textarea>
-
-        <button type="submit">Update</button>
-    </form>
+                    <div class="form-input-field">
+                        <label for="status">Status:</label>
+                        <select name="status" id="status">
+                            <option value="Available" <%= laptopData.status === "Available" ? "selected" : "" %>>Available</option>
+                            <option value="Not available" <%= laptopData.status === "Not available" ? "selected" : "" %>>Not available</option>
+                            <option value="Unknown location" <%= laptopData.status === "Unknown location" ? "selected" : "" %>>Unknown Location</option>
+                            <option value="Temporary unavailable" <%= laptopData.status === "Temporary unavailable" ? "selected" : "" %>>Temporary unavailable</option>
+                            <option value="Reserved" <%= laptopData.status === "Reserved" ? "selected" : "" %>>Reserved</option>
+                            <option value="Damaged" <%= laptopData.status === "Damaged" ? "selected" : "" %>>Damaged</option>
+                            <option value="Not in use" <%= laptopData.status === "Not in use" ? "selected" : "" %>>Not in use</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-input-field">
+                        <label for="user_id">User ID:</label>
+                        <input type="number" name="user_id" id="user_id" value="<%= laptopData.user_id %>">  
+                    </div>
+            
+                    <div class="">
+                        <label for="doc_signed">Document signed:</label>
+                        <input type="checkbox" name="doc_signed" id="doc_signed" <%= laptopData.doc_signed === true ? "checked" : "" %> >
+                    </div>
+                    
+                </div>
+                <div class="inputs-2-2 form-section">
+                    <div class="form-input-field">
+                        <label for="cpu">CPU:</label>
+                        <input type="text" name="cpu" id="cpu" value="<%= laptopData.cpu %>">
+                    </div>
+                    
+                    <div class="form-input-field">
+                        <label for="ram">RAM: [GB]</label>
+                        <input type="number" name="ram" id="ram" value="<%= laptopData.ram %>">
+                    </div>
+            
+                    <div class="form-input-field">
+                        <label for="storage">Storage: [GB]</label>
+                        <input type="number" name="storage" id="storage" value="<%= laptopData.storage %>">
+                    </div>
+            
+                    <div class="form-input-field">
+                        <label for="notes">Notes:</label>
+                        <textarea name="notes" id="notes"><%= laptopData.notes %></textarea>
+                    </div>
+                </div>
+                <div class="inputs-submit">
+                        <button type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
