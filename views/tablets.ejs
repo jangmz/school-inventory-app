@@ -9,9 +9,13 @@
 <body>
     <div class="container">
         <div class="side-menu">
-            <h1 class="menu-title">Tablets</h1>
-            <%- include("partials/navigationMenu.ejs") %>
-            <a class="add-new-btn" href="/tablets/new">Add new tablet</a>
+            <div class="side-menu-top">
+                <h1 class="menu-title">Tablets</h1>
+                <%- include("partials/navigationMenu.ejs") %>
+            </div>
+            <div class="side-menu-bottom">
+                <%- include("partials/addButtons.ejs") %>
+            </div>
         </div>
         <div class="content">
             <% if (locals.tabletsList) { %>
