@@ -1,4 +1,4 @@
-# Infinity Online Shop
+# School inventory app
 Aplication preview: [School Inventory App](https://school-inventory-app.up.railway.app/)
 
 ## Description
