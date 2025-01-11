@@ -1,5 +1,5 @@
 # School inventory app
-Aplication preview: [School Inventory App](https://school-inventory-app.up.railway.app/)
+Aplication preview: [School Inventory App](https://inventory-app-qvo9.onrender.com/)
 
 ## Description
 This is a web application for controlling hardware inventory of laptops and tablets in school. Main problem was that there was no control of how many devices are available/unavailable and who had which device. For backend I used NodeJS (Express) and PostrgreSQL database is used for storing data with tables for each device type (laptops, tablets, ...). 
